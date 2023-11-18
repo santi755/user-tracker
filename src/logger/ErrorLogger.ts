@@ -23,4 +23,4 @@ class ErrorLogger implements Logger {
   }
 }
 
-export const Error = new ErrorLogger();
+export default new ErrorLogger();
