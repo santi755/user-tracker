@@ -1,23 +1,44 @@
 import fs from "fs";
 
+type InputLevel = "INFO" | "WARN" | "ERROR" | "FATAL";
+
+interface Input {
+  message: string;
+  ip: string;
+}
+
 export default class ErrorLogger {
-  Warn(message: string): void {
-    this.saveMessage(message);
+  constructor(private readonly path: string) {
+    path = "/home/santiago/Projects/user-tracker/src/file/track.log";
   }
 
-  Info(message: string): void {
-    this.saveMessage(message);
+  Warn(message: string, ip: string): void {
+    this.saveMessage("WARN", message, ip);
   }
 
-  Error(message: string): void {
-    this.saveMessage(message);
+  Info(message: string, ip: string): void {
+    this.saveMessage("INFO", message, ip);
   }
 
-  Fatal(message: string): void {
-    this.saveMessage(message);
+  Error(message: string, ip: string): void {
+    this.saveMessage("ERROR", message, ip);
   }
 
-  private saveMessage(message: string): void {
-    fs.appendFileSync("../file/track.log", message);
+  Fatal(message: string, ip: string): void {
+    this.saveMessage("FATAL", message, ip);
+  }
+
+  private saveMessage(level: InputLevel, message: string, ip: string): void {
+    if (!fs.existsSync(this.path)) {
+      fs.writeFileSync(this.path, "");
+    }
+
+    const content = JSON.stringify({
+      timestamp: Date.now(),
+      level: level,
+      message: message,
+      ip: ip,
+    });
+    fs.appendFileSync(this.path, `${content}\n`);
   }
 }

@@ -7,5 +7,6 @@
     "./jest.config.ts"
   ],
   "ext": "*",
-  "exec": "dotenv -e .env ts-node ./src/index.ts"
+  "exec": "dotenv -e .env ts-node ./src/index.ts",
+  "ignore": ["./node_modules", "./src/file/**/*"]
 }
