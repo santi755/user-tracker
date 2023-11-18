@@ -1,5 +1,5 @@
 {
-  "name": "node-express-typescript-starter-2022",
+  "name": "user-logger",
   "version": "1.0.1",
   "description": "A minimally opinionated typescript & express starter for 2023",
   "author": "Carter Adams <carteradams@gmail.com>",
@@ -13,13 +13,6 @@
     "test": "cross-env NODE_ENV=test dotenv -e .env jest",
     "test:watch": "cross-env NODE_ENV=test dotenv -e .env jest --watch",
     "lint": "npx eslint src"
-  },
-  "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "helmet": "^6.0.1",
-    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
