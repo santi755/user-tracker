@@ -1,0 +1,27 @@
+{
+    "interval": 5000,
+    "input": [
+        {
+            "type": "file",
+            "value": "/home/jesuscampos/openjam/logs/example.log"
+        }
+    ],
+    "transformers": [
+        "geolocation"
+    ],
+    "output": [
+        {
+            "type": "file",
+            "value": "/home/jesuscampos/openjam/logs/example_output.log"
+        },
+        {
+            "type": "elastic",
+            "value": {
+                "scheme": "http",
+                "host": "localhost",
+                "port": 9200,
+                "index": "openjam"
+            }
+        }
+    ]
+}
