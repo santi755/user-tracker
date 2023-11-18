@@ -1,7 +1,6 @@
-import { Logger } from "./Logger";
 import fs from "fs";
 
-export default class ErrorLogger implements Logger {
+export default class ErrorLogger {
   Warn(message: string): void {
     this.saveMessage(message);
   }
