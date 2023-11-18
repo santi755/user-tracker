@@ -27,16 +27,15 @@ export default class ErrorLogger {
   }
 
   private saveMessage(level: InputLevel, message: string, ip: string): void {
-    if (!fs.existsSync(this.path)) {
-      fs.writeFileSync(this.path, "");
-    }
-
     const content = JSON.stringify({
       timestamp: Date.now(),
       level: level,
       message: message,
       ip: ip,
     });
-    fs.appendFileSync(this.path, `${content}\n`);
+
+    const file = fs.openSync(this.path, "w");
+    fs.appendFileSync(file, `${content}\n`);
+    fs.closeSync(file);
   }
 }
