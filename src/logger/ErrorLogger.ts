@@ -8,9 +8,7 @@ interface Input {
 }
 
 export default class ErrorLogger {
-  constructor(private readonly path: string) {
-    path = "/home/santiago/Projects/user-tracker/src/file/track.log";
-  }
+  constructor(private readonly path: string) {}
 
   Warn(message: string, ip: string): void {
     this.saveMessage("WARN", message, ip);

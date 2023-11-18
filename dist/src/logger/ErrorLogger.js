@@ -5,20 +5,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 class ErrorLogger {
-    Warn(message) {
-        this.saveMessage(message);
+    constructor(path) {
+        this.path = path;
     }
-    Info(message) {
-        this.saveMessage(message);
+    Warn(message, ip) {
+        this.saveMessage("WARN", message, ip);
     }
-    Error(message) {
-        this.saveMessage(message);
+    Info(message, ip) {
+        this.saveMessage("INFO", message, ip);
     }
-    Fatal(message) {
-        this.saveMessage(message);
+    Error(message, ip) {
+        this.saveMessage("ERROR", message, ip);
     }
-    saveMessage(message) {
-        fs_1.default.appendFileSync("../file/track.log", message);
+    Fatal(message, ip) {
+        this.saveMessage("FATAL", message, ip);
+    }
+    saveMessage(level, message, ip) {
+        if (!fs_1.default.existsSync(this.path)) {
+            fs_1.default.writeFileSync(this.path, "");
+        }
+        const content = JSON.stringify({
+            timestamp: Date.now(),
+            level: level,
+            message: message,
+            ip: ip,
+        });
+        fs_1.default.appendFileSync(this.path, `${content}\n`);
     }
 }
 exports.default = ErrorLogger;
