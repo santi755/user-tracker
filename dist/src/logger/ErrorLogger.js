@@ -21,16 +21,15 @@ class ErrorLogger {
         this.saveMessage("FATAL", message, ip);
     }
     saveMessage(level, message, ip) {
-        if (!fs_1.default.existsSync(this.path)) {
-            fs_1.default.writeFileSync(this.path, "");
-        }
         const content = JSON.stringify({
             timestamp: Date.now(),
             level: level,
             message: message,
             ip: ip,
         });
-        fs_1.default.appendFileSync(this.path, `${content}\n`);
+        const file = fs_1.default.openSync(this.path, "w");
+        fs_1.default.appendFileSync(file, `${content}\n`);
+        fs_1.default.closeSync(file);
     }
 }
 exports.default = ErrorLogger;
