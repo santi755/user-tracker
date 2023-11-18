@@ -1,1 +1,3 @@
-export * from "./logger/Logger";
+import ErrorLogger from "./logger/ErrorLogger";
+
+export default ErrorLogger;

@@ -1,7 +1,7 @@
 import { Logger } from "./Logger";
 import fs from "fs";
 
-class ErrorLogger implements Logger {
+export default class ErrorLogger implements Logger {
   Warn(message: string): void {
     this.saveMessage(message);
   }
@@ -22,5 +22,3 @@ class ErrorLogger implements Logger {
     fs.appendFileSync("../file/track.log", message);
   }
 }
-
-export default new ErrorLogger();
