@@ -1,7 +1,7 @@
-import app from './app'
-import config from './config'
+class ErrorLogger {
+  logError(message: string): void {
+    console.error(`[Error Logger]: ${message}`);
+  }
+}
 
-app.listen(config.port, () => {
-    console.log(`🚀 ${config.name} ${config.version} 🚀`)
-    console.log(`🚀 Listening on ${config.port} with NODE_ENV=${config.nodeEnv} 🚀`)
-})
+export const Error = new ErrorLogger();
